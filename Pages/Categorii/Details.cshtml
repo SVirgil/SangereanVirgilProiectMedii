@@ -1,0 +1,31 @@
+﻿@page
+@model SangereanVirgilProiectMedii.Pages.Categorii.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CategorieFilm</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategorieFilm.Film)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategorieFilm.Film.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategorieFilm.Categorie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategorieFilm.Categorie.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.CategorieFilm.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,29 +1,25 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using SangereanVirgilProiectMedii.Data;
-using SangereanVirgilProiectMedii.Models;
 
-namespace SangereanVirgilProiectMedii.Pages
+namespace MoviesWebMedii.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly SangereanVirgilProiectMedii.Data.SangereanVirgilProiectMediiContext _context;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(SangereanVirgilProiectMedii.Data.SangereanVirgilProiectMediiContext context)
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            _context = context;
+            _logger = logger;
         }
 
-        public IList<Film> Film { get;set; }
-
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Film = await _context.Film.ToListAsync();
+
         }
     }
 }

@@ -21,5 +21,9 @@ namespace SangereanVirgilProiectMedii.Models
 
         [DataType(DataType.Date)]
         public DateTime DataLansarii { get; set; }
+
+        public int PublisherID { get; set; }
+        public Publisher Publisher { get; set; }
+
     }
 }

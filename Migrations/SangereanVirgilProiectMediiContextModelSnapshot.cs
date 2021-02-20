@@ -19,6 +19,43 @@ namespace SangereanVirgilProiectMedii.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("SangereanVirgilProiectMedii.Models.Categorie", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NumeCategorie")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Categorie");
+                });
+
+            modelBuilder.Entity("SangereanVirgilProiectMedii.Models.CategorieFilm", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategorieID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CategorieID");
+
+                    b.HasIndex("FilmID");
+
+                    b.ToTable("CategorieFilm");
+                });
+
             modelBuilder.Entity("SangereanVirgilProiectMedii.Models.Film", b =>
                 {
                     b.Property<int>("ID")
@@ -35,12 +72,56 @@ namespace SangereanVirgilProiectMedii.Migrations
                     b.Property<decimal>("PretBilet")
                         .HasColumnType("decimal(6, 2)");
 
+                    b.Property<int>("StudioFilmID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Titlu")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("StudioFilmID");
+
                     b.ToTable("Film");
+                });
+
+            modelBuilder.Entity("SangereanVirgilProiectMedii.Models.StudioFilm", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NumeStudio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("StudioFilm");
+                });
+
+            modelBuilder.Entity("SangereanVirgilProiectMedii.Models.CategorieFilm", b =>
+                {
+                    b.HasOne("SangereanVirgilProiectMedii.Models.Categorie", "Categorie")
+                        .WithMany("CategoriiFilme")
+                        .HasForeignKey("CategorieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SangereanVirgilProiectMedii.Models.Film", "Film")
+                        .WithMany("CategoriiFilme")
+                        .HasForeignKey("FilmID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SangereanVirgilProiectMedii.Models.Film", b =>
+                {
+                    b.HasOne("SangereanVirgilProiectMedii.Models.StudioFilm", "StudioFilm")
+                        .WithMany("Filme")
+                        .HasForeignKey("StudioFilmID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

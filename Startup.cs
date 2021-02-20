@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SangereanVirgilProiectMedii.Data;
+using MoviesWebMedii.Data;
 
-namespace SangereanVirgilProiectMedii
+namespace MoviesWebMedii
 {
     public class Startup
     {
@@ -27,8 +27,8 @@ namespace SangereanVirgilProiectMedii
         {
             services.AddRazorPages();
 
-            services.AddDbContext<SangereanVirgilProiectMediiContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SangereanVirgilProiectMediiContext")));
+            services.AddDbContext<MoviesWebMediiContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MoviesWebMediiContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

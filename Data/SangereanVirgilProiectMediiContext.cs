@@ -15,5 +15,6 @@ namespace SangereanVirgilProiectMedii.Data
         }
 
         public DbSet<SangereanVirgilProiectMedii.Models.Film> Film { get; set; }
+
     }
 }
